@@ -14,13 +14,13 @@ pipeline {
 
     stage('build') {
       steps {
-        sh 'docker build -t hello_word_python .'
+        sh 'docker build -t benakiva/hello_word_python:${BUILD_NUMBER} .'
       }
     }
 
     stage('test') {
       steps {
-        sh 'docker run -itd -p 8080:8080 hello_word_python'
+        sh 'docker run -itd -p 8080:8080 benakiva/hello_word_python:${BUILD_NUMBER}'
         sleep 5
         sh 'curl http://localhost:8080:8080/'
         sh 'docker stop hello_word_python && docker rm hello_word_python'
@@ -29,7 +29,8 @@ pipeline {
 
     stage('push to dockerhub') {
       steps {
-        sleep 5
+        sh 'docker login'
+        sh 'docker puse benakiva/hello_word_python'
       }
     }
 
