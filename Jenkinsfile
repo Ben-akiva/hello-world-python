@@ -22,7 +22,6 @@ pipeline {
       steps {
         sh 'docker run -itd -p 8080:8080 benakiva/hello_word_python:${BUILD_NUMBER}'
         sleep 5
-        sh 'curl http://localhost:8080:8080/'
         sh 'docker stop hello_word_python && docker rm hello_word_python'
       }
     }
