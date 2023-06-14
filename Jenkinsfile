@@ -14,7 +14,7 @@ pipeline {
 
     stage('build') {
       steps {
-        sh 'docker build -t benakiva/hello_word_python:${env.BUILD_NUMBER} .'
+        sh 'docker build -t hello_word_python .'
       }
     }
 
