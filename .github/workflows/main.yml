@@ -12,12 +12,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: install requirments
-      run: python3 -m pip -r requirements.txt -t .
+      run: pip3 install -r requirements.txt -t .
 #    - uses: actions/cache@v3
 #      with:
 #        path: .  # Note that this path is not influenced by working-directory set in defaults, for example
 #        key: python-cache
-#
+
   Test:
     needs: Build
     runs-on: self-hosted
