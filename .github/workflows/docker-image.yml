@@ -20,8 +20,14 @@ jobs:
       run: docker run -itd --name python-hello -p 8080:8080   my-image-name:latest
     - run: sleep 5 && curl localhost:8080
     - name: change image name 
-      run: docker tag my-image-name:latest lidorlg/github-repo:latest
- 
+      run: docker tag my-image-name:latest benakiva/github-repo
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: docker push
+      run: docker push benakiva/github-repo:latest
       
    
 
